@@ -1,9 +1,17 @@
 const PORT = 8000;
 
 const express = require("express");
-const http = require("http");
+const http = require("https");
+const fs = require("fs");
 const app = express();
-const server = http.createServer(app);
+const server = http.createServer(
+  {
+    key: fs.readFileSync("./key.pem"),
+    cert: fs.readFileSync("./cert.pem"),
+    passphrase: "pass",
+  },
+  app,
+);
 const socket = require("socket.io");
 const io = socket(server);
 
