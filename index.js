@@ -6,8 +6,12 @@ const fs = require("fs");
 const app = express();
 const server = http.createServer(
   {
-    key: fs.readFileSync("./key.pem"),
-    cert: fs.readFileSync("./cert.pem"),
+    key: fs.readFileSync(
+      "/etc/letsencrypt/live/quipdf.quicloud.co.in/privkey.pem",
+    ),
+    cert: fs.readFileSync(
+      "/etc/letsencrypt/live/quipdf.quicloud.co.in/cert.pem",
+    ),
     passphrase: "pass",
   },
   app,
